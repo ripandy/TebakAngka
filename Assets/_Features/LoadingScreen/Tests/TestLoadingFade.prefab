@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8214494468134865780
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8214494468134865786}
+  - component: {fileID: 8214494468134865781}
+  m_Layer: 0
+  m_Name: TestLoadingFade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8214494468134865786
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8214494468134865780}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8214494468134865781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8214494468134865780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c713e742991b460b937b90a056f7692a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _loadingProgress: {fileID: 11400000, guid: 3b938f10917530a4b8dd7bb90a764a63, type: 2}
+  _fadeDuration: {fileID: 11400000, guid: 1eef3ea8753d1c846b3823b656b4e7ef, type: 2}
+  _isLoading: {fileID: 11400000, guid: fcffbd6b70d821946910791b48b8b186, type: 2}
+  _shouldFade: {fileID: 11400000, guid: 2e1ad92fc2e6dc3468824a5c6af03b28, type: 2}
+  _fadeColor: {fileID: 11400000, guid: 317dacf5c7439e0488b37c0b3491d4e1, type: 2}
+  _triggerKey: 108
+  _defaultBlackoutDuration: 2
+  _randomizeColor: 1

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -159,7 +159,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.07058824, g: 0.07058824, b: 0.07058824, a: 0}
+  m_BackGroundColor: {r: 1, g: 0.7311321, b: 0.9051575, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -200,7 +200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -213,9 +213,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 564448713, guid: 9e2f8d38bcad4b14595318c11166e414, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 564448713, guid: 9e2f8d38bcad4b14595318c11166e414, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 564448713, guid: 9e2f8d38bcad4b14595318c11166e414, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116092413522482894, guid: 9e2f8d38bcad4b14595318c11166e414, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1735533677349274774, guid: 9e2f8d38bcad4b14595318c11166e414, type: 3}
       propertyPath: m_Name
       value: CanvasImageFadeHandler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735533677349274774, guid: 9e2f8d38bcad4b14595318c11166e414, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1735533677349274775, guid: 9e2f8d38bcad4b14595318c11166e414, type: 3}
       propertyPath: m_RootOrder
@@ -394,7 +414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3109426000450290418, guid: 0bdc8707bd93b4ca4a6a929524ef1075, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bdc8707bd93b4ca4a6a929524ef1075, type: 3}
@@ -453,6 +473,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProgressBar
       objectReference: {fileID: 0}
+    - target: {fileID: 4315001877913827239, guid: 109de14a3a4f24da58694c7cdd21090a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315001879242024481, guid: 109de14a3a4f24da58694c7cdd21090a, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315001879242024481, guid: 109de14a3a4f24da58694c7cdd21090a, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315001879242024481, guid: 109de14a3a4f24da58694c7cdd21090a, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315001879242024484, guid: 109de14a3a4f24da58694c7cdd21090a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 109de14a3a4f24da58694c7cdd21090a, type: 3}
 --- !u!1001 &8219765283519963960
@@ -465,6 +505,10 @@ PrefabInstance:
     - target: {fileID: 8219765284817567668, guid: 4787070fa79714b63a0f90d49de0ce25, type: 3}
       propertyPath: m_Name
       value: ApplicationStateManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219765284817567668, guid: 4787070fa79714b63a0f90d49de0ce25, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8219765284817567669, guid: 4787070fa79714b63a0f90d49de0ce25, type: 3}
       propertyPath: m_RootOrder

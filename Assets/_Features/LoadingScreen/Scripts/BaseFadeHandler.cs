@@ -15,7 +15,7 @@ namespace Feature.LoadingScreen
 
         protected virtual void Initialize(CancellationToken token)
         {
-            _loadingState.SubscribeAwait(OnLoadingStateChanged, token);
+            _loadingState.Skip(2).SubscribeAwait(OnLoadingStateChanged, token);
         }
 
         private async UniTask OnLoadingStateChanged(LoadingStateEnum loadingState)

@@ -25,12 +25,14 @@ namespace TebakAngka.Gameplay
 
         public async UniTask OnStateBegan(CancellationToken cancellationToken)
         {
+            this.Cyan("OnStateBegan");
             GenerateLevel();
             await _answersPublisher.PublishAsync(OwnState, _gameModel.answers, cancellationToken);
         }
 
         public GameStateEnum OnStateEnded()
         {
+            this.Cyan("OnStateEnded");
             return GameStateEnum.UserInput;
         }
 
@@ -63,18 +65,17 @@ namespace TebakAngka.Gameplay
                 answers.Add(temp);
             }
             
-            PresentLevel();
+            LogGeneratedLevel();
         }
         
         [Conditional("UNITY_EDITOR")]
-        private void PresentLevel()
+        private void LogGeneratedLevel()
         {
             // text based
             var answers = _gameModel.answers;
             var answerString = "";
-            for (var i = 0; i < answers.Count; i++)
+            foreach (var answer in answers)
             {
-                var answer = answers[i];
                 answerString += $", {answer}";
             }
 

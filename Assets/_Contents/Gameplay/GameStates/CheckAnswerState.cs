@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Kassets.Utilities;
 using MessagePipe;
 
 namespace TebakAngka.Gameplay
@@ -21,11 +22,13 @@ namespace TebakAngka.Gameplay
         
         public async UniTask OnStateBegan(CancellationToken token)
         {
+            this.Cyan("OnStateBegan");
             await _answerResultPublisher.PublishAsync(OwnState, _gameModel.IsAnswerCorrect, token);
         }
 
         public GameStateEnum OnStateEnded()
         {
+            this.Cyan("OnStateEnded");
             return GameStateEnum.GenerateLevel;
         }
     }

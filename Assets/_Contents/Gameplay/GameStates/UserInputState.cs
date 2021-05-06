@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Kassets.Utilities;
 using MessagePipe;
 
 namespace TebakAngka.Gameplay
@@ -8,35 +9,35 @@ namespace TebakAngka.Gameplay
     public class UserInputState : IGameState
     {
         private readonly GameModel _gameModel;
-        private readonly IAsyncPublisher<GameStateEnum> _requestInputPublisher;
-        private readonly ISubscriber<GameStateEnum, int> _inputAnswerSubscriber;
-        
-        private const GameStateEnum OwnState = GameStateEnum.UserInput;
-        
-        private IDisposable _subscriptions;
+        private readonly IAsyncRequestHandler<GameStateEnum, int> _answerRequestHandler;
 
         public UserInputState(
             GameModel gameModel,
-            IAsyncPublisher<GameStateEnum> requestInputPublisher,
-            ISubscriber<GameStateEnum, int> inputAnswerSubscriber)
+            IAsyncRequestHandler<GameStateEnum, int> answerRequestHandler)
         {
             _gameModel = gameModel;
-            _requestInputPublisher = requestInputPublisher;
-            _inputAnswerSubscriber = inputAnswerSubscriber;
+            _answerRequestHandler = answerRequestHandler;
         }
         
         public async UniTask OnStateBegan(CancellationToken token)
         {
-            var bag = DisposableBag.CreateBuilder();
-            _inputAnswerSubscriber.Subscribe(OwnState, i => _gameModel.userAnswer = i).AddTo(bag);
-            _subscriptions = bag.Build();
-
-            await _requestInputPublisher.PublishAsync(OwnState, token);
+            this.Cyan("OnStateBegan");
+            using var cts = new CancellationTokenSource();
+            var linkedTokenSource = CancellationTokenSource.CreateLinkedTokenSource(token, cts.Token);
+            try
+            {
+                _gameModel.userAnswer = await _answerRequestHandler.InvokeAsync(GameStateEnum.UserInput, linkedTokenSource.Token);
+                this.Orange($"Not Cancelled, token cancelled?: {token.IsCancellationRequested}, cts {(cts == null ? "is null" : $"cancelled? {cts.IsCancellationRequested}")}, linkedTokenSource cancelled?: {linkedTokenSource.IsCancellationRequested}");
+            }
+            catch (OperationCanceledException)
+            {
+                this.Orange($"Cancelled, token cancelled?: {token.IsCancellationRequested}, cts {(cts == null ? "is null" : $"cancelled? {cts.IsCancellationRequested}")}, linkedTokenSource cancelled?: {linkedTokenSource.IsCancellationRequested}");
+            }
         }
 
         public GameStateEnum OnStateEnded()
         {
-            _subscriptions.Dispose();
+            this.Cyan("OnStateEnded");
             return GameStateEnum.CheckAnswer;
         }
     }

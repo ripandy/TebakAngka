@@ -1,39 +1,60 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Linq;
+using Kassets.Utilities;
 using VContainer.Unity;
 
 namespace TebakAngka.Gameplay
 {
     public class GameStateEngine : IStartable, IDisposable
     {
-        private readonly IList<IGameState> _gameStates;
+        private readonly IReadOnlyList<IGameState> _gameStates;
+        private readonly CancellationTokenSource _lifeTimeCancellationTokenSource = new CancellationTokenSource();
+        
         private IGameState this[GameStateEnum gameState] => _gameStates[(int) gameState];
-        private readonly CancellationTokenSource _lifeTimeCancellationToken = new CancellationTokenSource();
 
-        public GameStateEngine(IList<IGameState> gameStates)
+        public GameStateEngine(IReadOnlyList<IGameState> gameStates)
         {
             _gameStates = gameStates;
         }
 
-        public void Start() => RunStateEngine().Forget();
+        public void Start() => RunStateEngine(_lifeTimeCancellationTokenSource.Token);
 
-        private async UniTaskVoid RunStateEngine()
+        private void RunStateEngine(CancellationToken token)
         {
-            var activeState = this[GameStateEnum.GenerateLevel];
-            while (!_lifeTimeCancellationToken.IsCancellationRequested)
+            this.Orange("Running State Engine");
+            var nextState = GameStateEnum.GenerateLevel;
+            try
             {
-                await activeState.OnStateBegan(_lifeTimeCancellationToken.Token);
-                var nextState = activeState.OnStateEnded();
-                activeState = this[nextState];
+                UniTaskAsyncEnumerable.EveryUpdate()
+                    .SubscribeAwait(async _ =>
+                    {
+                        try
+                        {
+                            var activeState = this[nextState];
+                            await activeState.OnStateBegan(token);
+                            nextState = activeState.OnStateEnded();
+                        }
+                        catch (OperationCanceledException)
+                        {
+                            this.Red(
+                                $"State Cancelled!! _lifeTimeCancellationToken cancelled? {_lifeTimeCancellationTokenSource.IsCancellationRequested} ?? {token.IsCancellationRequested}");
+                        }
+                    }, token);
+            }
+            catch (OperationCanceledException)
+            {
+                this.Red(
+                    $"UniTaskAsyncEnumerable Cancelled!! _lifeTimeCancellationToken cancelled? {_lifeTimeCancellationTokenSource.IsCancellationRequested} ?? {token.IsCancellationRequested}");
             }
         }
 
         public void Dispose()
         {
-            _lifeTimeCancellationToken?.Cancel();
-            _lifeTimeCancellationToken?.Dispose();
+            this.Cyan("Dispose");
+            _lifeTimeCancellationTokenSource?.Cancel();
+            _lifeTimeCancellationTokenSource?.Dispose();
         }
     }
 }

@@ -253,8 +253,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 60cf1348839a74385bd4d418f4261b9c, type: 3}
   - {fileID: 21300000, guid: a6eb14d53783d4636948402a4d8a8386, type: 3}
   - {fileID: 21300000, guid: 390da2bb5f01b4854ad5e87dda7e6078, type: 3}
-  _brightColor: {r: 0.9294118, g: 0.9294118, b: 0.9294118, a: 1}
-  _darkColor: {r: 0.07058824, g: 0.07058824, b: 0.07058824, a: 1}
+  _brightColor: {r: 1, g: 0.88337374, b: 0.740566, a: 1}
+  _darkColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
 --- !u!114 &1248985472380822556
 MonoBehaviour:
   m_ObjectHideFlags: 0

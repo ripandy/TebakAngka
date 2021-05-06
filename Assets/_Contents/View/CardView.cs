@@ -59,7 +59,7 @@ namespace TebakAngka.View
                 0.114f * (bb * bb)
             );
 
-            isLight = brightness > 128;
+            isLight = brightness > 160;
 
             return new Color(r, g, b);
         }

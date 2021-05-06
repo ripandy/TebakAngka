@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
 using Kassets.Utilities;
 using VContainer.Unity;
 
 namespace TebakAngka.Gameplay
 {
-    public class GameStateEngine : IStartable, IDisposable
+    public class GameStateEngine : IAsyncStartable, IDisposable
     {
         private readonly IReadOnlyList<IGameState> _gameStates;
         private readonly CancellationTokenSource _lifeTimeCancellationTokenSource = new CancellationTokenSource();
@@ -19,11 +20,18 @@ namespace TebakAngka.Gameplay
             _gameStates = gameStates;
         }
 
-        public void Start() => RunStateEngine(_lifeTimeCancellationTokenSource.Token);
+        public async UniTask StartAsync(CancellationToken cancellationToken)
+        {
+            this.Orange($"StartAsync. cancellationToken is None? {cancellationToken == CancellationToken.None}");
+            var token = cancellationToken == default ? _lifeTimeCancellationTokenSource.Token : cancellationToken;
+            
+            await UniTask.Delay(TimeSpan.FromSeconds(1.5f), cancellationToken: token);
+            
+            RunStateEngine(token);
+        }
 
         private void RunStateEngine(CancellationToken token)
         {
-            this.Orange("Running State Engine");
             var nextState = GameStateEnum.GenerateLevel;
             try
             {

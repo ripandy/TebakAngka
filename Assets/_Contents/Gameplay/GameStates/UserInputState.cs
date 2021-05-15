@@ -27,7 +27,6 @@ namespace TebakAngka.Gameplay
             try
             {
                 _gameModel.userAnswer = await _answerRequestHandler.InvokeAsync(GameStateEnum.UserInput, linkedTokenSource.Token);
-                this.Orange($"Not Cancelled, token cancelled?: {token.IsCancellationRequested}, cts {(cts == null ? "is null" : $"cancelled? {cts.IsCancellationRequested}")}, linkedTokenSource cancelled?: {linkedTokenSource.IsCancellationRequested}");
             }
             catch (OperationCanceledException)
             {
@@ -37,7 +36,6 @@ namespace TebakAngka.Gameplay
 
         public GameStateEnum OnStateEnded()
         {
-            this.Cyan("OnStateEnded");
             return GameStateEnum.CheckAnswer;
         }
     }

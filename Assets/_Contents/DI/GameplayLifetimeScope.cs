@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Feature.AudioManagement;
 using TebakAngka.Controller;
 using TebakAngka.Gameplay;
 using TebakAngka.Presenter;
@@ -14,6 +15,10 @@ namespace TebakAngka.DI
     {
         [SerializeField] private GameObject _cardViewPrefab;
         [SerializeField] private Transform _cardViewParent;
+        [SerializeField] private ResultView[] _resultViews;
+        [SerializeField] private AudioClipCollection[] _levelIntroClipCollections;
+        [SerializeField] private AudioClipCollection[] _resultClipCollections;
+        [SerializeField] private AudioSource _audioSource;
         
         protected override void Configure(IContainerBuilder builder)
         {
@@ -44,6 +49,7 @@ namespace TebakAngka.DI
             
             // used by GenerateLevelState -> LevelPresenter
             builder.RegisterMessageBroker<GameStateEnum, IList<int>>(options);
+            builder.RegisterMessageBroker<GameStateEnum, int>(options);
             
             // used by CheckAnswerState -> ?
             builder.RegisterMessageBroker<GameStateEnum, bool>(options);
@@ -52,6 +58,9 @@ namespace TebakAngka.DI
         private void RegisterPresenter(IContainerBuilder builder)
         {
             builder.Register<LevelPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
+            builder.Register<LevelAudioPresenter>(Lifetime.Scoped).AsImplementedInterfaces().WithParameter("audioClipCollections", _levelIntroClipCollections);
+            builder.Register<ResultPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
+            builder.Register<ResultAudioPresenter>(Lifetime.Scoped).AsImplementedInterfaces().WithParameter("audioClipCollections", _resultClipCollections);
         }
         
         private void RegisterController(IContainerBuilder builder)
@@ -62,8 +71,12 @@ namespace TebakAngka.DI
         
         private void RegisterView(IContainerBuilder builder)
         {
+            // audio
+            builder.RegisterInstance(_audioSource);
+            
             // IList<CardView> is shared and referenced by LevelPresenter and AnswerController.
             builder.RegisterInstance(new List<CardView>()).AsImplementedInterfaces();
+            builder.RegisterInstance(_resultViews);
             
             // register CardView factory. Factory is referenced by LevelPresenter.
             builder.RegisterFactory<CardView>(container =>

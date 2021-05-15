@@ -13,6 +13,7 @@ namespace TebakAngka.Gameplay
         public int userAnswer;
         public readonly IList<int> answers = new List<int>();
 
+        public int LevelMaxNumber => Mathf.Min(MaxNumber, Mathf.FloorToInt(level * 0.25f) + 4);
         public bool IsAnswerCorrect => userAnswer == correctAnswer;
         
         public void ShuffleAnswers()

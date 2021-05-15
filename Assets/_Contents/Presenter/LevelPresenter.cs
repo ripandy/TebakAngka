@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Kassets.Utilities;
 using MessagePipe;
 using TebakAngka.Gameplay;
 using TebakAngka.View;
@@ -17,7 +16,7 @@ namespace TebakAngka.Presenter
         private readonly Func<CardView> _cardFactory;
         private readonly IList<CardView> _cards;
 
-        private IDisposable _subscribers;
+        private IDisposable _subscription;
         
         public LevelPresenter(
             IAsyncSubscriber<GameStateEnum, IList<int>> answersSubscriber,
@@ -35,18 +34,16 @@ namespace TebakAngka.Presenter
             
             _answersSubscriber.Subscribe(GameStateEnum.GenerateLevel, SetupLevel).AddTo(bag);
             
-            _subscribers = bag.Build();
+            _subscription = bag.Build();
         }
 
         private async UniTask SetupLevel(IList<int> answers, CancellationToken token)
         {
             var count = Mathf.Max(answers.Count, _cards.Count);
             
-            this.Orange($"count: {count} ({answers.Count} or {_cards.Count})");
             var tasks = new List<UniTask>();
             for (var i = 0; i < count; i++)
             {
-                this.Orange($"answer-{i}: {answers[i]}");
                 if (_cards.Count <= i)
                     _cards.Add(_cardFactory.Invoke());
                 
@@ -61,7 +58,7 @@ namespace TebakAngka.Presenter
 
         public void Dispose()
         {
-            _subscribers?.Dispose();
+            _subscription?.Dispose();
         }
     }
 }

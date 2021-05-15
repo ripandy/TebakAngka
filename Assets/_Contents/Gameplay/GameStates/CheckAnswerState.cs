@@ -28,7 +28,6 @@ namespace TebakAngka.Gameplay
 
         public GameStateEnum OnStateEnded()
         {
-            this.Cyan("OnStateEnded");
             return GameStateEnum.GenerateLevel;
         }
     }

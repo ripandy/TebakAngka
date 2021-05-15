@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.cysharp.messagepipe": "https://github.com/Cysharp/MessagePipe.git?path=src/MessagePipe.Unity/Assets/Plugins/MessagePipe",
+    "com.cysharp.messagepipe.vcontainer": "https://github.com/Cysharp/MessagePipe.git?path=src/MessagePipe.Unity/Assets/Plugins/MessagePipe.VContainer",
     "com.cysharp.unitask": "2.2.5",
     "com.demigiant.dotween": "1.2.42",
     "com.kadinche.kassets": "https://github.com/kadinche/kadinche_unity_assets.git?path=/Assets/Kassets",

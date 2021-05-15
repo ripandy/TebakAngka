@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb2e34fe6994787811d4fc8c10a1ace, type: 3}
+  m_Name: NumberClipIbunCollection
+  m_EditorClassIdentifier: 
+  _values:
+  - {fileID: 8300000, guid: 66fb68c43409c48f0857bcbfaacbad1e, type: 3}
+  - {fileID: 8300000, guid: 16dd09e59c24c419f83fa681162ab442, type: 3}
+  - {fileID: 8300000, guid: 13edb0d48474d46428fe170d21cd55a5, type: 3}
+  - {fileID: 8300000, guid: 22c8f149e1a8c44d78053db3a2412003, type: 3}
+  - {fileID: 8300000, guid: 7a52e6ea8f4b8464cb378d923a5b9ab5, type: 3}
+  - {fileID: 8300000, guid: f210b1a12a55e4e8898ce2b68951b84e, type: 3}
+  - {fileID: 8300000, guid: 46645d3fa99324514a9265814d93c4d5, type: 3}
+  - {fileID: 8300000, guid: 16310272d759f4bfa8467906d41e8923, type: 3}
+  - {fileID: 8300000, guid: b2f59751665874196abdc765ccfd38bf, type: 3}
+  - {fileID: 8300000, guid: 49859e2c4d9794d0abb64338d1640ad3, type: 3}
+  _keep: 0

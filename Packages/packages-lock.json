@@ -5,7 +5,14 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "5685b409d8dca9bb8828b953191dca943edf9322"
+      "hash": "7ae87a1ca952d450d9f56368dc4af75bb8eca00b"
+    },
+    "com.cysharp.messagepipe.vcontainer": {
+      "version": "https://github.com/Cysharp/MessagePipe.git?path=src/MessagePipe.Unity/Assets/Plugins/MessagePipe.VContainer",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "7ae87a1ca952d450d9f56368dc4af75bb8eca00b"
     },
     "com.cysharp.unitask": {
       "version": "2.2.5",

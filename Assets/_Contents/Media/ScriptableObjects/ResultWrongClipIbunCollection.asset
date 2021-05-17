@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb2e34fe6994787811d4fc8c10a1ace, type: 3}
+  m_Script: {fileID: 11500000, guid: f9b758f637e94c2b92c8c9bfcf5f1e64, type: 3}
   m_Name: ResultWrongClipIbunCollection
   m_EditorClassIdentifier: 
-  _values:
+  _audioClips:
+  - {fileID: 8300000, guid: b148706adef2c460ca3267a956343833, type: 3}
   - {fileID: 8300000, guid: 6508f61d792b4495d82749c2f627c6e5, type: 3}
-  - {fileID: 8300000, guid: 7d6f7424e2a964714be7ef26ea12288d, type: 3}
   - {fileID: 8300000, guid: 57b8e22769317481c861216650211410, type: 3}
+  - {fileID: 8300000, guid: 7d6f7424e2a964714be7ef26ea12288d, type: 3}
   - {fileID: 8300000, guid: 3722722a5fe4241fd918a3b7e2d4d53c, type: 3}
-  _keep: 0

@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Kassets.Utilities;
 using MessagePipe;
 using UnityEngine;
 
@@ -28,7 +26,6 @@ namespace TebakAngka.Gameplay
 
         public async UniTask OnStateBegan(CancellationToken cancellationToken)
         {
-            this.Cyan("OnStateBegan");
             GenerateLevel();
             
             await UniTask.WhenAll(
@@ -70,22 +67,6 @@ namespace TebakAngka.Gameplay
 
                 answers.Add(temp);
             }
-            
-            LogGeneratedLevel();
-        }
-        
-        [Conditional("UNITY_EDITOR")]
-        private void LogGeneratedLevel()
-        {
-            // text based
-            var answers = _gameModel.answers;
-            var answerString = "";
-            foreach (var answer in answers)
-            {
-                answerString += $", {answer}";
-            }
-
-            this.Cyan($"Level: {_gameModel.level}, Jumlah Jawaban: {answers.Count}, Jawaban benar: {_gameModel.correctAnswer}. Pilihan{answerString}");
         }
     }
 }

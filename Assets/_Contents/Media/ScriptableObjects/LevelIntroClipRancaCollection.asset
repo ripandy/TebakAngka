@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb2e34fe6994787811d4fc8c10a1ace, type: 3}
+  m_Script: {fileID: 11500000, guid: f9b758f637e94c2b92c8c9bfcf5f1e64, type: 3}
   m_Name: LevelIntroClipRancaCollection
   m_EditorClassIdentifier: 
-  _values:
-  - {fileID: 8300000, guid: 3ceb054cdf6be42368225c417b162747, type: 3}
+  _audioClips:
   - {fileID: 8300000, guid: 58d238385cc6b49fba5b1d4ce2f18486, type: 3}
-  _keep: 0

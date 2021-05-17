@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
-using Kassets.Utilities;
 using VContainer.Unity;
 
 namespace TebakAngka.Gameplay
@@ -22,7 +21,6 @@ namespace TebakAngka.Gameplay
 
         public async UniTask StartAsync(CancellationToken cancellationToken)
         {
-            this.Orange($"StartAsync. cancellationToken is None? {cancellationToken == CancellationToken.None}");
             var token = cancellationToken == default ? _lifeTimeCancellationTokenSource.Token : cancellationToken;
             
             await UniTask.Delay(TimeSpan.FromSeconds(1.5f), cancellationToken: token);
@@ -33,34 +31,18 @@ namespace TebakAngka.Gameplay
         private void RunStateEngine(CancellationToken token)
         {
             var nextState = GameStateEnum.GenerateLevel;
-            try
-            {
-                UniTaskAsyncEnumerable.EveryUpdate()
-                    .SubscribeAwait(async _ =>
-                    {
-                        try
-                        {
-                            var activeState = this[nextState];
-                            await activeState.OnStateBegan(token);
-                            nextState = activeState.OnStateEnded();
-                        }
-                        catch (OperationCanceledException)
-                        {
-                            this.Red(
-                                $"State Cancelled!! _lifeTimeCancellationToken cancelled? {_lifeTimeCancellationTokenSource.IsCancellationRequested} ?? {token.IsCancellationRequested}");
-                        }
-                    }, token);
-            }
-            catch (OperationCanceledException)
-            {
-                this.Red(
-                    $"UniTaskAsyncEnumerable Cancelled!! _lifeTimeCancellationToken cancelled? {_lifeTimeCancellationTokenSource.IsCancellationRequested} ?? {token.IsCancellationRequested}");
-            }
+            UniTaskAsyncEnumerable.EveryUpdate()
+                .SubscribeAwait(async _ =>
+                {
+                        var activeState = this[nextState];
+                        await activeState.OnStateBegan(token);
+                        nextState = activeState.OnStateEnded();
+                    
+                }, token);
         }
 
         public void Dispose()
         {
-            this.Cyan("Dispose");
             _lifeTimeCancellationTokenSource?.Cancel();
             _lifeTimeCancellationTokenSource?.Dispose();
         }

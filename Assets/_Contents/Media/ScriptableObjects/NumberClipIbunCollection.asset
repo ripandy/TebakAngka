@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb2e34fe6994787811d4fc8c10a1ace, type: 3}
+  m_Script: {fileID: 11500000, guid: f9b758f637e94c2b92c8c9bfcf5f1e64, type: 3}
   m_Name: NumberClipIbunCollection
   m_EditorClassIdentifier: 
-  _values:
+  _audioClips:
   - {fileID: 8300000, guid: 66fb68c43409c48f0857bcbfaacbad1e, type: 3}
   - {fileID: 8300000, guid: 16dd09e59c24c419f83fa681162ab442, type: 3}
   - {fileID: 8300000, guid: 13edb0d48474d46428fe170d21cd55a5, type: 3}
@@ -23,4 +23,3 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 16310272d759f4bfa8467906d41e8923, type: 3}
   - {fileID: 8300000, guid: b2f59751665874196abdc765ccfd38bf, type: 3}
   - {fileID: 8300000, guid: 49859e2c4d9794d0abb64338d1640ad3, type: 3}
-  _keep: 0

@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb2e34fe6994787811d4fc8c10a1ace, type: 3}
+  m_Script: {fileID: 11500000, guid: f9b758f637e94c2b92c8c9bfcf5f1e64, type: 3}
   m_Name: NumberClipRancaCollection
   m_EditorClassIdentifier: 
-  _values:
+  _audioClips:
   - {fileID: 8300000, guid: 4392e499a0ea144baabed8fa41ee1aa5, type: 3}
   - {fileID: 8300000, guid: e5d5fe84baef14b5eaeb9e373e4d0d50, type: 3}
   - {fileID: 8300000, guid: fcdfa39a60a2549b59d13388511535b0, type: 3}
@@ -23,4 +23,3 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7eb79c20ad7ef4afd819a66180e6a792, type: 3}
   - {fileID: 8300000, guid: 41daf2475d23d4460b614153312695a3, type: 3}
   - {fileID: 8300000, guid: d04d3757c601a4aae8cfd3907f54044a, type: 3}
-  _keep: 0

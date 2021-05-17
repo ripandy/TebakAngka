@@ -1,7 +1,5 @@
-using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Kassets.Utilities;
 using MessagePipe;
 
 namespace TebakAngka.Gameplay
@@ -21,17 +19,9 @@ namespace TebakAngka.Gameplay
         
         public async UniTask OnStateBegan(CancellationToken token)
         {
-            this.Cyan("OnStateBegan");
             using var cts = new CancellationTokenSource();
             var linkedTokenSource = CancellationTokenSource.CreateLinkedTokenSource(token, cts.Token);
-            try
-            {
-                _gameModel.userAnswer = await _answerRequestHandler.InvokeAsync(GameStateEnum.UserInput, linkedTokenSource.Token);
-            }
-            catch (OperationCanceledException)
-            {
-                this.Orange($"Cancelled, token cancelled?: {token.IsCancellationRequested}, cts {(cts == null ? "is null" : $"cancelled? {cts.IsCancellationRequested}")}, linkedTokenSource cancelled?: {linkedTokenSource.IsCancellationRequested}");
-            }
+            _gameModel.userAnswer = await _answerRequestHandler.InvokeAsync(GameStateEnum.UserInput, linkedTokenSource.Token);
         }
 
         public GameStateEnum OnStateEnded()

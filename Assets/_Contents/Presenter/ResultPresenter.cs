@@ -4,7 +4,6 @@ using Cysharp.Threading.Tasks;
 using MessagePipe;
 using TebakAngka.Gameplay;
 using TebakAngka.View;
-using UnityEngine;
 using VContainer.Unity;
 
 namespace TebakAngka.Presenter

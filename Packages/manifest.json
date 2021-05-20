@@ -50,8 +50,7 @@
       "url": "https://package.openupm.com",
       "scopes": [
         "com.cysharp",
-        "jp.hadashikick.vcontainer",
-        "com.neuecc.unirx"
+        "jp.hadashikick.vcontainer"
       ]
     }
   ]

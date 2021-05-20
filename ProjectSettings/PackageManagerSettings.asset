@@ -30,7 +30,6 @@ MonoBehaviour:
     m_Scopes:
     - com.cysharp
     - jp.hadashikick.vcontainer
-    - com.neuecc.unirx
     m_IsDefault: 0
     m_Capabilities: 0
   m_UserSelectedRegistryName: 
@@ -44,7 +43,6 @@ MonoBehaviour:
       m_Scopes:
       - com.cysharp
       - jp.hadashikick.vcontainer
-      - com.neuecc.unirx
       m_IsDefault: 0
       m_Capabilities: 0
     m_Modified: 0
@@ -53,5 +51,4 @@ MonoBehaviour:
     m_Scopes:
     - com.cysharp
     - jp.hadashikick.vcontainer
-    - com.neuecc.unirx
     m_SelectedScopeIndex: 0

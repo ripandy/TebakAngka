@@ -7,11 +7,15 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 using MessagePipe;
+using UnityEngine.UI;
 
 namespace TebakAngka.DI
 {
     public class GameplayLifetimeScope : LifetimeScope
     {
+        [SerializeField] private GameObject _mainMenuBaseObject;
+        [SerializeField] private Button _startButton;
+        
         [SerializeField] private GameObject _cardViewPrefab;
         [SerializeField] private Transform _cardViewParent;
         [SerializeField] private ResultView[] _resultViews;
@@ -37,6 +41,7 @@ namespace TebakAngka.DI
             builder.RegisterEntryPoint<GameStateEngine>(Lifetime.Scoped);
             
             // Register GameStates by interface IGameState.
+            builder.Register<MainMenuState>(Lifetime.Scoped).AsImplementedInterfaces();
             builder.Register<GenerateLevelState>(Lifetime.Scoped).AsImplementedInterfaces();
             builder.Register<UserInputState>(Lifetime.Scoped).AsImplementedInterfaces();
             builder.Register<CheckAnswerState>(Lifetime.Scoped).AsImplementedInterfaces();
@@ -45,6 +50,9 @@ namespace TebakAngka.DI
         private void RegisterMessagePipe(IContainerBuilder builder)
         {
             var options = builder.RegisterMessagePipe();
+            
+            // state change message
+            builder.RegisterMessageBroker<GameStateEnum>(options);
             
             // used by GenerateLevelState -> LevelPresenter
             builder.RegisterMessageBroker<GameStateEnum, IList<int>>(options);
@@ -56,6 +64,7 @@ namespace TebakAngka.DI
 
         private void RegisterPresenter(IContainerBuilder builder)
         {
+            builder.Register<MainMenuPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
             builder.Register<LevelPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
             builder.Register<LevelAudioPresenter>(Lifetime.Scoped).AsImplementedInterfaces().WithParameter("audioClipCollections", _levelIntroClipCollections);
             builder.Register<ResultPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
@@ -70,6 +79,10 @@ namespace TebakAngka.DI
         
         private void RegisterView(IContainerBuilder builder)
         {
+            // main menu
+            builder.RegisterInstance(_mainMenuBaseObject);
+            builder.RegisterInstance(_startButton);
+            
             // audio
             builder.RegisterInstance(_audioSource);
             

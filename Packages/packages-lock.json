@@ -1,18 +1,18 @@
 {
   "dependencies": {
     "com.cysharp.messagepipe": {
-      "version": "https://github.com/Cysharp/MessagePipe.git?path=src/MessagePipe.Unity/Assets/Plugins/MessagePipe",
+      "version": "1.3.3",
       "depth": 0,
-      "source": "git",
+      "source": "registry",
       "dependencies": {},
-      "hash": "7ae87a1ca952d450d9f56368dc4af75bb8eca00b"
+      "url": "https://package.openupm.com"
     },
     "com.cysharp.messagepipe.vcontainer": {
-      "version": "https://github.com/Cysharp/MessagePipe.git?path=src/MessagePipe.Unity/Assets/Plugins/MessagePipe.VContainer",
+      "version": "1.3.3",
       "depth": 0,
-      "source": "git",
+      "source": "registry",
       "dependencies": {},
-      "hash": "7ae87a1ca952d450d9f56368dc4af75bb8eca00b"
+      "url": "https://package.openupm.com"
     },
     "com.cysharp.unitask": {
       "version": "2.2.5",
@@ -21,12 +21,11 @@
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
-    "com.demigiant.dotween": {
-      "version": "1.2.42",
+    "com.unity.2d.sprite": {
+      "version": "1.0.0",
       "depth": 0,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://package.openupm.com"
+      "source": "builtin",
+      "dependencies": {}
     },
     "com.unity.collab-proxy": {
       "version": "1.3.9",
@@ -116,7 +115,7 @@
       }
     },
     "jp.hadashikick.vcontainer": {
-      "version": "1.7.2",
+      "version": "1.8.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {

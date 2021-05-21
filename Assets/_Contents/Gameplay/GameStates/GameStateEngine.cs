@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Cysharp.Threading.Tasks.Linq;
 using VContainer.Unity;
 
 namespace TebakAngka.Gameplay
@@ -25,20 +24,19 @@ namespace TebakAngka.Gameplay
             
             await UniTask.Delay(TimeSpan.FromSeconds(1.5f), cancellationToken: token);
             
-            RunStateEngine(token);
+            RunStateEngine(token).Forget();
         }
 
-        private void RunStateEngine(CancellationToken token)
+        private async UniTaskVoid RunStateEngine(CancellationToken token)
         {
-            var nextState = GameStateEnum.GenerateLevel;
-            UniTaskAsyncEnumerable.EveryUpdate()
-                .SubscribeAwait(async _ =>
-                {
-                        var activeState = this[nextState];
-                        await activeState.OnStateBegan(token);
-                        nextState = activeState.OnStateEnded();
-                    
-                }, token);
+            var nextState = GameStateEnum.MainMenu;
+            while (!token.IsCancellationRequested)
+            {
+                var activeState = this[nextState];
+                await activeState.OnStateBegan(token);
+                nextState = activeState.OnStateEnded();
+                await UniTask.Yield();
+            }
         }
 
         public void Dispose()

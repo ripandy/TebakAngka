@@ -58,8 +58,7 @@ namespace TebakAngka.Presenter
             _audioSource.pitch = Random.Range(0.95f, 1.05f);
             _audioSource.Play();
 
-            await UniTask.WaitUntil(() => !_audioSource.isPlaying && _audioSource.time >= _audioSource.clip.length,
-                cancellationToken: token);
+            await UniTask.Delay(TimeSpan.FromSeconds(_audioSource.clip.length), cancellationToken: token);
         }
 
         public void Dispose()

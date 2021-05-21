@@ -29,7 +29,7 @@ namespace TebakAngka.Gameplay
 
         private async UniTaskVoid RunStateEngine(CancellationToken token)
         {
-            var nextState = GameStateEnum.GenerateLevel;
+            var nextState = GameStateEnum.MainMenu;
             while (!token.IsCancellationRequested)
             {
                 var activeState = this[nextState];
